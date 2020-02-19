@@ -1,5 +1,5 @@
 import * as React from 'react'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Channel } from '../models'
 
 interface ChannelProps {
@@ -12,7 +12,7 @@ export default class ChannelSidebar extends React.Component<ChannelProps, {} > {
     return (
       <div className="sideBar_channels">
         <h2 className="sideBar_channels_title">
-          Channels <a href="/newChannel"><button className="addButton sideBar_channels_add">+</button></a>
+          Channels <Link to="/newChannel"> <button className="addButton sideBar_channels_add">+</button></Link>
         </h2>
         <ul>
         {
@@ -30,4 +30,10 @@ export default class ChannelSidebar extends React.Component<ChannelProps, {} > {
       </li>
     )
   }
-}
+
+  onClick() {
+    this.setState({
+      points: 1
+    })
+  } 
+ }

@@ -1,5 +1,5 @@
 import * as React from 'react'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 interface ChannelFormState {
   channelName: string
@@ -19,7 +19,7 @@ class NewChannelForm extends React.Component<ChannelFormProps, ChannelFormState>
     return (
       <div className="newChannel">
         <div className="newChannel_content">
-          {/* <Link to="/" className="newChannel_close"> <span>X</span> </Link> */}
+          <Link to="/" className="newChannel_close"> <span>X</span> </Link>
           <form onSubmit={this.handleAddChannel}>
             <h1>Create a channel</h1>
             <label>Name</label>
@@ -48,8 +48,8 @@ class NewChannelForm extends React.Component<ChannelFormProps, ChannelFormState>
   }
 
   handleAddChannel = (event: any) => {
-    this.props.onNewChannel(this.state.channelName)
     event.preventDefault();
+    this.props.onNewChannel(this.state.channelName)
   }
 }
 
