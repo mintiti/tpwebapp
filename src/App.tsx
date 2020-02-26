@@ -24,6 +24,7 @@ const channel: Channel = {
 type AppState = {
   channel: Channel
   channels: Array<Channel>
+  user?: User
 }
 
 type AppProps = {
@@ -65,7 +66,13 @@ class App extends React.Component<AppProps, AppState> {
   } 
   
   LoginRoute = () => {
-    return <Home onUpdateUser={(user: User) => {}} {...this.state} {...this.props} />
+    return <Home onUpdateUser={(user: User) => {this.changeUser(user)}} {...this.state} {...this.props} />
+  }
+
+  changeUser = (user : User) => {
+    this.setState({
+      user : user
+    })
   }
 
   addChannel = (name: string) => {

@@ -41,7 +41,7 @@ class home extends React.Component<HomeProps, HomeState> {
             </select>
 
             <div className="home_buttonsWrapper">
-              <button type="submit">Let's Go!</button>
+              <button  type="submit">Let's Go!</button>
             </div>
           </form>
         </div>
@@ -51,6 +51,8 @@ class home extends React.Component<HomeProps, HomeState> {
 
   updateUser = (event: any) => {
     event.preventDefault();
+    console.log("Hello World")
+
 
     this.props.onUpdateUser(this.state);
     // this.props.history.push('/messages/general');
