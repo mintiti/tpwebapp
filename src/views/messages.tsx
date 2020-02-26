@@ -9,7 +9,7 @@ interface MessagesProps {
   appName: string,
   channel: Channel
   channels: Array<Channel>
-  // activeChannel: Channel
+  activeChannel?: Channel
   // activeQuestion?: Question
   onQuestionAsked: (channelId: string, question: string) => void
   onQuestionAnswered: (channelId: string, questionId: string, content: string) => void
@@ -18,12 +18,14 @@ interface MessagesProps {
 
 interface MessagesState {
   currentMessage: string
+  currentChannel? : Channel
 }
 
 class Messages extends React.Component<MessagesProps, MessagesState> {
 
   state: MessagesState = {
-    currentMessage: ''
+    currentMessage: '',
+    currentChannel : this.props.activeChannel
   }
 
   render(){

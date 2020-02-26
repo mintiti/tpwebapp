@@ -9,7 +9,7 @@ interface LayoutProps {
   children?: React.ReactNode
   user?: User
   channels: Array<Channel>
-  // activeChannel: Channel
+  activeChannel?: Channel
 }
 
 const layout = (props: LayoutProps) => {
@@ -24,7 +24,9 @@ const layout = (props: LayoutProps) => {
           }
         </div>
         <div className="chanel_header">
-          <h2># Channel name here </h2>
+        {
+        (props.activeChannel && <h2># {props.activeChannel} </h2>) ||
+          <h2># Channel name here </h2>}
         </div>
       </div>
       <div className="sidebar">
