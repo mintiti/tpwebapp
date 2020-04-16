@@ -51,7 +51,6 @@ class home extends React.Component<HomeProps, HomeState> {
 
   updateUser = (event: any) => {
     event.preventDefault();
-    console.log("Hello World")
 
 
     this.props.onUpdateUser(this.state);

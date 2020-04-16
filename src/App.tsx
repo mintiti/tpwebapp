@@ -2,7 +2,7 @@ import React from 'react';
 import Home from './views/home'
 import Messages from './views/messages'
 import NewChannel from './views/newChannel'
-import { Channel, User } from './models'
+import { Channel, User, Question, DefaultUser } from './models'
 import {
   BrowserRouter as Router,
   Route,
@@ -10,7 +10,7 @@ import {
   useParams
 } from 'react-router-dom'
 
-function f1(){}
+
 
 function f2(){}
 
@@ -24,7 +24,7 @@ const channel: Channel = {
 type AppState = {
   channel: Channel
   channels: Array<Channel>
-  user?: User
+  user: User
 }
 
 type AppProps = {
@@ -34,8 +34,11 @@ type AppProps = {
 class App extends React.Component<AppProps, AppState> {
   state: AppState = {
     channel: channel,
-    channels: []
-  }
+      channels: [],
+    user: DefaultUser
+    }
+
+ 
 
   render(){
     return (
@@ -53,8 +56,8 @@ class App extends React.Component<AppProps, AppState> {
   }
 
   MessagesRoute = () => {
-    let { channelId } = useParams();
-    return <Messages onQuestionAsked={f1} onQuestionAnswered={f2} toggleAnswerMode={f3} {...this.state} {...this.props} />
+      let { channelId } = useParams();
+      return <Messages onQuestionAsked={this.f1.bind(this)} onQuestionAnswered={f2} toggleAnswerMode={f3} {...this.state} {...this.props} />
   } 
   
   NewChannelRoute = () => {
@@ -86,7 +89,30 @@ class App extends React.Component<AppProps, AppState> {
         channels: [...state.channels, newChannel]
       }
     })
-  }
+    }
+
+    f1(channelId: string, question: string) {
+
+
+        this.setState((state, props) => {
+            const newQuestion: Question = {
+                id: question,
+                user: state.user,
+                content: question,
+                answers: []
+
+            }
+
+            return {
+                channel: {
+                    name: channelId,
+                    questions: [...state.channel.questions, newQuestion]
+                }
+            }
+        })
+}
+
+
    
 }
 

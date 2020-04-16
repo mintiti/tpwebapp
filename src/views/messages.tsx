@@ -4,6 +4,7 @@ import Layout from './layout'
 import QuestionBlock from '../components/question'
 import MessageInput from '../components/messageInput'
 import { Channel, Question } from '../models'
+import { log } from 'util'
 
 interface MessagesProps {
   appName: string,
@@ -56,8 +57,9 @@ class Messages extends React.Component<MessagesProps, MessagesState> {
   }
 
   sendMessage = (event: any) => {
-    event.preventDefault();
+      event.preventDefault();
 
+      this.props.onQuestionAsked(this.props.channel.name, this.state.currentMessage);
     //@todo
   }
 
